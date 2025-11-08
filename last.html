@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Shenu Photography</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+body{background:#fff;color:#111;overflow-x:hidden;}
+
+/* WELCOME */
+#welcome{height:100vh;background:linear-gradient(160deg,#fff 0%,#f3e9ff 40%,#e3d1ff 100%);display:flex;align-items:center;justify-content:center;text-align:center;animation:fadeIn 1.5s ease;}
+#welcome h1{font-size:60px;font-weight:700;letter-spacing:3px;color:#222;animation:slideDown 1.6s ease forwards;}
+#welcome h2{margin-top:10px;font-size:34px;font-weight:700;background:linear-gradient(90deg,#c28bff,#8a47ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:fadeUp 1.8s ease forwards;}
+#welcome button{margin-top:35px;padding:16px 40px;font-size:20px;font-weight:600;border:none;border-radius:16px;background:#8e4dff;color:#fff;cursor:pointer;transition:0.25s;box-shadow:0 10px 25px rgba(129,57,255,0.25);animation:fadeUp 2s ease forwards;}
+#welcome button:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(129,57,255,0.32);} 
+
+@keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes slideDown{from{transform:translateY(-30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+@keyframes fadeUp{from{transform:translateY(25px);opacity:0;}to{transform:translateY(0);}}
+
+/* NAV */
+.hidden{display:none;}
+.nav{position:fixed;top:18px;left:50%;transform:translateX(-50%);width:90%;max-width:1150px;display:flex;align-items:center;justify-content:space-between;padding:12px 22px;border-radius:999px;background:rgba(255,255,255,0.85);backdrop-filter:blur(8px);box-shadow:0 6px 20px rgba(0,0,0,0.08);z-index:100;}
+.nav img{height:90px;}
+
+.nav a{text-decoration:none;font-weight:600;color:#111;font-size:15px;padding:10px 16px;border-radius:12px;transition:0.2s;}
+.nav a:hover{background:#eee;}
+
+.ownerBtn{
+  background:#8e4dff;
+  color:white !important;
+  padding:10px 18px;
+  border-radius:12px;
+  box-shadow:0 6px 18px rgba(129,57,255,0.25);
+}
+.ownerBtn:hover{
+  background:#7c3dff;
+  color:white !important;
+}
+
+/* HERO */
+.hero{min-height:80vh;display:flex;align-items:center;justify-content:center;padding:170px 20px 90px;}
+.container{width:100%;max-width:1150px;display:grid;grid-template-columns:1fr 450px;gap:40px;}
+.intro .kicker{color:#666;font-size:14px;font-weight:600;margin-bottom:8px;}
+.intro h1{font-size:46px;line-height:1.1;margin-bottom:16px;}
+.intro p{color:#666;font-size:17px;margin-bottom:20px;}
+.btn-row{display:flex;gap:14px;}
+.btn{padding:13px 18px;border-radius:14px;text-decoration:none;font-weight:600;border:1px solid #ddd;background:#fff;}
+.btn.primary{background:#111;color:#fff;border:none;}
+
+/* IMAGE STACK */
+.image-stack{position:relative;height:430px;}
+.stack-img{position:absolute;width:100%;height:100%;object-fit:cover;border-radius:24px;box-shadow:0 20px 45px rgba(0,0,0,0.1);opacity:0;transform:scale(1.06);transition:opacity 1.2s ease,transform 1.2s cubic-bezier(.2,.9,.2,1);} 
+.stack-img.show{opacity:1;transform:scale(1);} 
+
+/* ABOUT */
+.about{padding:90px 20px;background:#faf7ff;margin-top:20px;}
+.about .inner{max-width:1150px;margin:auto;display:flex;}
+.about .text{flex:1;background:white;padding:30px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,0.05);} 
+.about h2{margin-bottom:12px;}
+.about ul{margin-top:10px;}
+
+/* OWNER SECTION */
+.owner{
+  padding:90px 20px;
+  background:white;
+}
+.owner .card{
+  max-width:900px;
+  margin:auto;
+  background:rgba(255,255,255,0.9);
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,0.08);
+}
+.owner img{
+  width:180px;height:180px;border-radius:50%;object-fit:cover;margin-bottom:20px;
+  box-shadow:0 10px 40px rgba(138,71,255,0.25);
+  border:4px solid white;
+}
+.owner h1{
+  font-size:32px;
+  background:linear-gradient(90deg,#c28bff,#8a47ff);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.owner p{margin-top:10px;font-size:17px;color:#555;}
+
+/* POPUP */
+#popup{position:fixed;bottom:40px;right:40px;background:#8e4dff;color:white;padding:14px 20px;border-radius:14px;font-size:15px;opacity:0;transform:translateY(20px);transition:0.3s ease;box-shadow:0 10px 25px rgba(129,57,255,0.35);} 
+#popup.show{opacity:1;transform:translateY(0);} 
+
+@media(max-width:900px){.container{grid-template-columns:1fr;}.image-stack{height:320px;}.nav img{height:70px;}}
+</style>
+</head>
+
+<body>
+
+<section id="welcome">
+  <div>
+    <h1>WELCOME</h1>
+    <h2>Shenu Photography</h2>
+    <button onclick="enterSite()">BOOK US</button>
+  </div>
+</section>
+
+<div id="homePage" class="hidden">
+
+  <!-- ✅ NAV BAR WITH NEW BUTTON -->
+  <nav class="nav">
+    <img src="logo.png" />
+    <div>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#owner" class="ownerBtn">Owner Details</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="container">
+      <div class="intro reveal">
+        <div class="kicker">Shenu Photography</div>
+        <h1>Capturing Moments, Creating Memories</h1>
+        <p>Professional photography & videography based in Negombo, Sri Lanka.</p>
+
+        <div class="btn-row">
+          <a class="btn primary" href="#about">About</a>
+          <a class="btn" id="wpBtn">WhatsApp</a>
+          <a class="btn" id="fbBtn">Facebook</a>
+        </div>
+      </div>
+
+      <div class="image-stack reveal">
+        <img src="feature.jpg" class="stack-img show" id="img1">
+        <img src="extra1.jpg" class="stack-img" id="img2">
+        <img src="extra2.jpg" class="stack-img" id="img3">
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="inner">
+      <div class="text reveal" id="aboutBox">
+
+        <h2>About Us</h2>
+        <p>
+          Shenu Photography is a professional photography team from Negombo, delivering creative, modern and emotional storytelling through photos and videos. 
+        </p><br>
+
+        <h3>Why Choose Us?</h3>
+        <ul>
+          <li>✨ Friendly & professional service</li>
+          <li>📸 High-quality photos + creative editing</li>
+          <li>⚡ Fast delivery</li>
+          <li>💜 Affordable packages</li>
+        </ul><br>
+
+        <h3>Contact Details</h3>
+        <p><strong>Phone:</strong> 077 134 5261 / 072 066 4831</p>
+        <p><strong>Email:</strong> photography.shenu@gmail.com</p>
+        <p><strong>Facebook:</strong> Official Shenu Page</p>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ✅ OWNER DETAILS SECTION -->
+  <section class="owner" id="owner">
+    <div class="card">
+      <img src="owner.jpg">
+      <h1>Shenal Nethmina Fernando</h1>
+      <p>Professional Photographer & Videographer — Negombo, Sri Lanka</p>
+      <p><strong>Phone:</strong> 077 134 5261 / 072 066 4831</p>
+      <p><strong>Email:</strong> photography.shenu@gmail.com</p>
+    </div>
+  </section>
+
+</div>
+
+<div id="popup">📸 Want to book a shoot? Message us anytime!</div>
+
+<script>
+function enterSite(){
+  document.getElementById('welcome').style.display='none';
+  document.getElementById('homePage').classList.remove('hidden');
+}
+
+const whatsapp = "https://wa.me/94771345261?text=Hi!%20I%20would%20like%20to%20book%20a%20photoshoot.";
+const facebook = "https://www.facebook.com/profile.php?id=61576388520787";
+
+document.getElementById("wpBtn").onclick = ()=> window.open(whatsapp);
+document.getElementById("fbBtn").onclick = ()=> window.open(facebook);
+
+const imgs=[img1,img2,img3];let index=0;
+setInterval(()=>{
+  imgs.forEach(i=>i.classList.remove('show'));
+  index=(index+1)%imgs.length;
+  imgs[index].classList.add('show');
+},3000);
+
+const popup=document.getElementById("popup");
+document.querySelector('.image-stack').addEventListener('mouseenter',()=>{
+  popup.classList.add('show');
+});
+document.querySelector('.image-stack').addEventListener('mouseleave',()=>{
+  popup.classList.remove('show');
+});
+</script>
+
+</body>
+</html>
